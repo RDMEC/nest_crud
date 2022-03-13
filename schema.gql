@@ -22,5 +22,5 @@ type Mutation {
 
 type Query {
   getEdge(id: Int!): Edge!
-  getEdges: Edge!
+  getEdges: [Edge!]!
 }
