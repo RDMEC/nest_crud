@@ -1,5 +1,5 @@
 import { Field, ArgsType } from '@nestjs/graphql';
-import { Min, Max, IsInt } from 'class-validator';
+import { Min, Max } from 'class-validator';
 
 @ArgsType()
 export class CreateEdgeArgs {
@@ -13,11 +13,4 @@ export class CreateEdgeArgs {
 
   @Field()
   node2_alias: string;
-}
-
-@ArgsType()
-export class GetEdgeArgs {
-  @Field()
-  @IsInt()
-  id: number;
 }

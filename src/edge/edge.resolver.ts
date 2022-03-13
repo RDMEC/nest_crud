@@ -1,5 +1,5 @@
-import { Query, Mutation, Resolver, Args } from '@nestjs/graphql';
-import { CreateEdgeArgs, GetEdgeArgs } from './edge.args';
+import { Query, Mutation, Resolver, Args, Int } from '@nestjs/graphql';
+import { CreateEdgeArgs } from './edge.args';
 
 import { Edge } from './edge.model';
 import { EdgeService } from './edge.service';
@@ -9,8 +9,8 @@ export class EdgeResolver {
   constructor(private edgesService: EdgeService) {}
 
   @Query(() => Edge)
-  async getEdge(@Args() args: GetEdgeArgs) {
-    return this.edgesService.findOne(args.id);
+  async getEdge(@Args('id', { type: () => Int }) id: number) {
+    return this.edgesService.findOne(id);
   }
 
   @Query(() => [Edge])
