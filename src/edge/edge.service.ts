@@ -19,7 +19,7 @@ export class EdgeService {
     return this.edgesRepository.find();
   }
 
-  async findOne(id: number): Promise<EdgeEntity> {
+  findOne(id: number): Promise<EdgeEntity> {
     return this.edgesRepository.findOne(id);
   }
 

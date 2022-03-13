@@ -12,7 +12,7 @@ export class EdgeResolver {
     return this.edgesService.findOne(id);
   }
 
-  @Query(() => Edge)
+  @Query(() => [Edge])
   async getEdges() {
     return this.edgesService.findAll();
   }
