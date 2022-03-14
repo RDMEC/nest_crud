@@ -28,21 +28,17 @@ export class EdgeService {
     node1_alias: string,
     node2_alias: string,
   ): Promise<EdgeEntity> {
-    const response = await this.edgesRepository.insert({
-      capacity: capacity,
-      node1_alias: node1_alias,
-      node2_alias: node2_alias,
-    });
-    console.log('edge.resolver createEdge response', response);
-
     const edge = {
-      id: response.raw[0].id,
-      created_at: response.raw[0].created_at,
-      updated_at: response.raw[0].updated_at,
       capacity: capacity,
       node1_alias: node1_alias,
       node2_alias: node2_alias,
     };
+
+    const response = await this.edgesRepository.insert(edge);
+
+    edge['id'] = response.raw[0].id;
+    edge['created_at'] = response.raw[0].created_at;
+    edge['updated_at'] = response.raw[0].updated_at;
 
     this.amqpConnection.publish('edge-events', 'create-edge', edge);
 
