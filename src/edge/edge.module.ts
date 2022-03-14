@@ -10,13 +10,11 @@ import { EdgeEntity } from './edge.entity';
 
 @Module({
   imports: [
-    // Jogar config de schema no App Module?
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
       sortSchema: true,
     }),
-    // Jogar essa config num json?
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
